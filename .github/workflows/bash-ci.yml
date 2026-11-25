@@ -1,0 +1,16 @@
+name: Bash Script CI
+
+on:
+  push:
+    paths:
+      - '**.sh'
+
+jobs:
+  ci-bash:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: ShellCheck syntax check
+        run: find . -name '*.sh' -print0 | xargs -0 shellcheck
